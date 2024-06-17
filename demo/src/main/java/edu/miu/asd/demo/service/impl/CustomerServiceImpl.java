@@ -4,6 +4,7 @@ import edu.miu.asd.demo.dto.request.CustomerRequestDto;
 import edu.miu.asd.demo.dto.response.CustomerResponseDto;
 import edu.miu.asd.demo.model.Customer;
 import edu.miu.asd.demo.repository.CustomerRepository;
+import edu.miu.asd.demo.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
 
@@ -24,7 +25,7 @@ public class CustomerServiceImpl {
         return Optional.of(customerResponseDto);
     }
     @Override
-    public Optional<CustomerResponseDto> getUser(Long id) {
+    public Optional<CustomerResponseDto> getCustomer(Long id) {
         Optional<Customer> foundCustomer = customerRepository.findById(id);
         if (foundCustomer.isPresent()) {
             CustomerResponseDto customerResponseDto = modelMapper.map(foundCustomer.get(), CustomerResponseDto.class);

@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductRequestDto {
-    private Long id;
+    private String productName;
+    private Double price;
 }

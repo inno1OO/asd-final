@@ -1,5 +1,6 @@
 package edu.miu.asd.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +10,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_f")
 @Data
 @NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat(pattern = "MM/dd/yyyy HH:mm:ss")
     private LocalDate orderDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,7 +27,7 @@ public class Order {
     @ManyToMany
     @JoinTable(name="order_line", joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    List<Product> products;
+    List<Product> listProducts;
 
     public Order(LocalDate orderDate) {
         this.orderDate = orderDate;

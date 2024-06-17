@@ -17,7 +17,7 @@ public class Product {
     private String name;
     private Double price;
 
-    @ManyToMany(mappedBy = "orderLines")
+    @ManyToMany(mappedBy = "listProducts")
     List<Order> orderLines;
 
     public Product(String name, Double price) {
